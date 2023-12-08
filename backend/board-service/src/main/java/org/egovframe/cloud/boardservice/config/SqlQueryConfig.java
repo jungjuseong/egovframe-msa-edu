@@ -15,7 +15,7 @@ import javax.sql.DataSource;
  *
  * Native SQL 설정 클래스
  *
- * @author 표준프레임워크센터 jooho
+
  * @version 1.0
  * @since 2021/07/07
  *

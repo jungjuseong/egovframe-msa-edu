@@ -15,7 +15,6 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.egovframe.cloud.boardservice.api.board.dto.BoardListResponseDto;
 import org.egovframe.cloud.boardservice.api.board.dto.BoardResponseDto;
-import org.egovframe.cloud.boardservice.api.board.dto.QBoardListResponseDto;
 import org.egovframe.cloud.boardservice.api.board.dto.QBoardResponseDto;
 import org.egovframe.cloud.boardservice.domain.code.QCode;
 import org.egovframe.cloud.common.dto.RequestDto;
