@@ -163,7 +163,7 @@ const UserInfoModified = (props: UserInfoModifiedPrpps) => {
 
       <BottomButtons handleButtons={bottomButtons} />
     </div>
-  )
+  );
 }
 
 export { UserInfoModified }

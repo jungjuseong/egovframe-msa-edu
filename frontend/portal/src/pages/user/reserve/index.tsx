@@ -9,7 +9,7 @@ import { DEFUALT_GRID_PAGE_SIZE, GRID_ROWS_PER_PAGE_OPTION } from '@constants'
 import usePage from '@hooks/usePage'
 import useSearchTypes from '@hooks/useSearchTypes'
 import { convertStringToDateFormat } from '@libs/date'
-import Typography from '@material-ui/core/Typography'
+import Typography from '@mui/material/Typography'
 import {
   GridCellParams,
   GridColDef,

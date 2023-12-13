@@ -14,10 +14,17 @@ import {
 } from '@constants'
 import { useLocalStorage } from '@hooks/useLocalStorage'
 import { SnackbarProvider } from 'notistack'
-import { ThemeProvider } from '@material-ui/core/styles'
+import { ThemeProvider, Theme, StyledEngineProvider } from '@mui/material/styles';
 import theme from '@styles/theme'
 import { SITE_ID } from '@constants/env'
 import { CookiesProvider } from 'react-cookie'
+
+
+declare module '@mui/styles/defaultTheme' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface DefaultTheme extends Theme {}
+}
+
 
 // axios 기본 설정
 axios.defaults.headers.common[CUSTOM_HEADER_SITE_ID_KEY] = SITE_ID
@@ -47,36 +54,38 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 
   return (
     <RecoilRoot>
-      <ThemeProvider theme={theme}>
-        <GlobalStyles>
-          <Head>
-            <link rel="icon" type="image/x-icon" href="/favicon.ico"></link>
-            <meta
-              name="viewport"
-              content="user-scalable=no, width=device-width, initial-scale=1"
-            />
-            <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-            <title>{DEFAULT_APP_NAME}</title>
-          </Head>
-          <SnackbarProvider
-            maxSnack={3}
-            iconVariant={{
-              success: '✅ ',
-              error: '✖ ',
-              warning: '⚠ ',
-              info: 'ℹ️ ',
-            }}
-            autoHideDuration={2000}
-            preventDuplicate={true}
-          >
-            <CookiesProvider>
-              <App component={Component} {...pageProps} />
-            </CookiesProvider>
-          </SnackbarProvider>
-        </GlobalStyles>
-      </ThemeProvider>
+      <StyledEngineProvider injectFirst>
+        <ThemeProvider theme={theme}>
+          <GlobalStyles>
+            <Head>
+              <link rel="icon" type="image/x-icon" href="/favicon.ico"></link>
+              <meta
+                name="viewport"
+                content="user-scalable=no, width=device-width, initial-scale=1"
+              />
+              <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+              <title>{DEFAULT_APP_NAME}</title>
+            </Head>
+            <SnackbarProvider
+              maxSnack={3}
+              iconVariant={{
+                success: '✅ ',
+                error: '✖ ',
+                warning: '⚠ ',
+                info: 'ℹ️ ',
+              }}
+              autoHideDuration={2000}
+              preventDuplicate={true}
+            >
+              <CookiesProvider>
+                <App component={Component} {...pageProps} />
+              </CookiesProvider>
+            </SnackbarProvider>
+          </GlobalStyles>
+        </ThemeProvider>
+      </StyledEngineProvider>
     </RecoilRoot>
-  )
+  );
 }
 
 MyApp.getInitialProps = async ({ Component, ctx, router }: AppContext) => {

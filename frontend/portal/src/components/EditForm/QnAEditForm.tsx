@@ -7,7 +7,7 @@ import { BottomButtons, IButtons } from '@components/Buttons'
 import Editor from '@components/Editor'
 import Upload, { UploadType } from '@components/Upload'
 import ValidationAlert from '@components/ValidationAlert'
-import Divider from '@material-ui/core/Divider'
+import Divider from '@mui/material/Divider'
 import { BoardFormContext } from '@pages/board/[skin]/[board]/edit/[id]'
 import { IPostsForm } from '@service'
 

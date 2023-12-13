@@ -5,8 +5,8 @@ import Upload, { UploadType } from '@components/Upload'
 import ValidationAlert from '@components/ValidationAlert'
 import { DLWrapper } from '@components/WriteDLFields'
 import { EDITOR_MAX_LENGTH } from '@constants'
-import Divider from '@material-ui/core/Divider'
-import Hidden from '@material-ui/core/Hidden'
+import Divider from '@mui/material/Divider'
+import Hidden from '@mui/material/Hidden'
 import { BoardFormContext } from '@pages/board/[skin]/[board]/edit/[id]'
 import { IPostsForm } from '@service'
 import { getTextLength } from '@utils'
@@ -69,144 +69,142 @@ const NormalEditForm = (props: NormalEditFormProps) => {
     [router],
   )
 
-  return (
-    <>
-      <form>
-        <div className="write">
-          <Controller
-            control={control}
-            name="postsTitle"
-            render={({ field, fieldState }) => (
-              <DLWrapper
-                title={t('posts.posts_title')}
-                className="inputTitle"
-                required
-                error={fieldState.error}
-              >
-                <input
-                  type="text"
-                  value={field.value}
-                  onChange={field.onChange}
-                  placeholder={t('posts.posts_title')}
-                />
-              </DLWrapper>
-            )}
-            defaultValue=""
-            rules={{ required: true }}
-          />
-
-          {board.uploadUseAt && (
-            <dl>
-              <dt>{t('common.attachment')}</dt>
-              <dd>
-                <Upload
-                  ref={uploadRef}
-                  multi
-                  uploadLimitCount={board.uploadLimitCount}
-                  uploadLimitSize={board.uploadLimitSize}
-                  attachmentCode={post.attachmentCode}
-                  attachData={attachList}
-                />
-                <Divider variant="fullWidth" />
-                {attachList && (
-                  <AttachList
-                    data={attachList}
-                    setData={setAttachListHandler}
-                  />
-                )}
-              </dd>
-            </dl>
+  return <>
+    <form>
+      <div className="write">
+        <Controller
+          control={control}
+          name="postsTitle"
+          render={({ field, fieldState }) => (
+            <DLWrapper
+              title={t('posts.posts_title')}
+              className="inputTitle"
+              required
+              error={fieldState.error}
+            >
+              <input
+                type="text"
+                value={field.value}
+                onChange={field.onChange}
+                placeholder={t('posts.posts_title')}
+              />
+            </DLWrapper>
           )}
+          defaultValue=""
+          rules={{ required: true }}
+        />
 
-          {board.editorUseAt ? (
-            <>
-              <Hidden smUp>
-                <Controller
-                  control={control}
-                  name="postsContent"
-                  render={({ field }) => (
-                    <Editor
-                      contents={field.value}
-                      setContents={field.onChange}
-                    />
-                  )}
-                  rules={{ required: true }}
-                  defaultValue=""
+        {board.uploadUseAt && (
+          <dl>
+            <dt>{t('common.attachment')}</dt>
+            <dd>
+              <Upload
+                ref={uploadRef}
+                multi
+                uploadLimitCount={board.uploadLimitCount}
+                uploadLimitSize={board.uploadLimitSize}
+                attachmentCode={post.attachmentCode}
+                attachData={attachList}
+              />
+              <Divider variant="fullWidth" />
+              {attachList && (
+                <AttachList
+                  data={attachList}
+                  setData={setAttachListHandler}
                 />
-                {errors.postsContent && (
-                  <ValidationAlert
-                    fieldError={errors.postsContent}
-                    label={t('posts.posts_content')}
+              )}
+            </dd>
+          </dl>
+        )}
+
+        {board.editorUseAt ? (
+          <>
+            <Hidden smUp>
+              <Controller
+                control={control}
+                name="postsContent"
+                render={({ field }) => (
+                  <Editor
+                    contents={field.value}
+                    setContents={field.onChange}
                   />
                 )}
-              </Hidden>
-              <Hidden xsDown>
-                <dl>
-                  <dt className="import">{t('posts.posts_content')}</dt>
-                  <dd>
-                    <div>
-                      <Controller
-                        control={control}
-                        name="postsContent"
-                        render={({ field }) => (
-                          <Editor
-                            contents={field.value}
-                            setContents={field.onChange}
-                          />
-                        )}
-                        rules={{ required: true }}
-                        defaultValue=""
-                      />
-                      {errors.postsContent && (
-                        <ValidationAlert
-                          fieldError={errors.postsContent}
-                          label={t('posts.posts_content')}
+                rules={{ required: true }}
+                defaultValue=""
+              />
+              {errors.postsContent && (
+                <ValidationAlert
+                  fieldError={errors.postsContent}
+                  label={t('posts.posts_content')}
+                />
+              )}
+            </Hidden>
+            <Hidden smDown>
+              <dl>
+                <dt className="import">{t('posts.posts_content')}</dt>
+                <dd>
+                  <div>
+                    <Controller
+                      control={control}
+                      name="postsContent"
+                      render={({ field }) => (
+                        <Editor
+                          contents={field.value}
+                          setContents={field.onChange}
                         />
                       )}
+                      rules={{ required: true }}
+                      defaultValue=""
+                    />
+                    {errors.postsContent && (
+                      <ValidationAlert
+                        fieldError={errors.postsContent}
+                        label={t('posts.posts_content')}
+                      />
+                    )}
+                  </div>
+                </dd>
+              </dl>{' '}
+            </Hidden>
+          </>
+        ) : (
+          <dl>
+            <dt className="import">{t('posts.posts_content')}</dt>
+            <dd>
+              <Controller
+                control={control}
+                name="postsContent"
+                render={({ field }) => (
+                  <>
+                    <div>
+                      <textarea {...field} />
                     </div>
-                  </dd>
-                </dl>{' '}
-              </Hidden>
-            </>
-          ) : (
-            <dl>
-              <dt className="import">{t('posts.posts_content')}</dt>
-              <dd>
-                <Controller
-                  control={control}
-                  name="postsContent"
-                  render={({ field }) => (
-                    <>
-                      <div>
-                        <textarea {...field} />
-                      </div>
-                      <div>
-                        <p className="byte">
-                          <span> {getTextLength(field.value, 'char')} </span> /{' '}
-                          {EDITOR_MAX_LENGTH}
-                        </p>
-                      </div>
-                    </>
-                  )}
-                  defaultValue=""
-                  rules={{ required: true, maxLength: EDITOR_MAX_LENGTH }}
-                />
-
-                {errors.postsContent && (
-                  <ValidationAlert
-                    fieldError={errors.postsContent}
-                    target={[EDITOR_MAX_LENGTH]}
-                    label={t('posts.posts_content')}
-                  />
+                    <div>
+                      <p className="byte">
+                        <span> {getTextLength(field.value, 'char')} </span> /{' '}
+                        {EDITOR_MAX_LENGTH}
+                      </p>
+                    </div>
+                  </>
                 )}
-              </dd>
-            </dl>
-          )}
-        </div>
-      </form>
-      <BottomButtons handleButtons={bottomButtons} />
-    </>
-  )
+                defaultValue=""
+                rules={{ required: true, maxLength: EDITOR_MAX_LENGTH }}
+              />
+
+              {errors.postsContent && (
+                <ValidationAlert
+                  fieldError={errors.postsContent}
+                  target={[EDITOR_MAX_LENGTH]}
+                  label={t('posts.posts_content')}
+                />
+              )}
+            </dd>
+          </dl>
+        )}
+      </div>
+    </form>
+    <BottomButtons handleButtons={bottomButtons} />
+  </>;
 }
 
 export { NormalEditForm }

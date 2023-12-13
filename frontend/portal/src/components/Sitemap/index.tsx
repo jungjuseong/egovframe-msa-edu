@@ -1,8 +1,8 @@
 import ActiveLink from '@components/ActiveLink'
-import Hidden from '@material-ui/core/Hidden'
-import IconButton from '@material-ui/core/IconButton'
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown'
-import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp'
+import Hidden from '@mui/material/Hidden'
+import IconButton from '@mui/material/IconButton'
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 import { currentMenuStateAtom, ISideMenu, menuStateAtom } from '@stores'
 import { translateToLang } from '@utils'
 import React, { useCallback, useState } from 'react'
@@ -78,60 +78,58 @@ const Sitemap = () => {
     }
   }
 
-  return (
-    <>
-      <nav>
-        <div>
-          {menus &&
-            menus
-              .filter(item => item.isShow)
-              .map((item, index) => {
-                return (
-                  <ul key={`sitemap-ul-${item.id}`}>
-                    <li
-                      key={`sitemap-li-${item.id}`}
-                      className={`${isActive(item.id) ? 'on' : ''}`}
-                    >
-                      <Hidden smUp>
-                        <div>
-                          <ActiveLink
-                            href={
-                              item.children.length > 0
-                                ? item.children[0].urlPath
-                                : item.urlPath
-                            }
-                            children={translateToLang(i18n.language, item)}
-                          />
+  return <>
+    <nav>
+      <div>
+        {menus &&
+          menus
+            .filter(item => item.isShow)
+            .map((item, index) => {
+              return (
+                <ul key={`sitemap-ul-${item.id}`}>
+                  <li
+                    key={`sitemap-li-${item.id}`}
+                    className={`${isActive(item.id) ? 'on' : ''}`}
+                  >
+                    <Hidden smUp>
+                      <div>
+                        <ActiveLink
+                          href={
+                            item.children.length > 0
+                              ? item.children[0].urlPath
+                              : item.urlPath
+                          }
+                          children={translateToLang(i18n.language, item)}
+                        />
 
-                          <IconButton
-                            color="inherit"
-                            onClick={e =>
-                              handleChevronClick(e, item, isActive(item.id))
-                            }
-                          >
-                            {isActive(item.id) ? (
-                              <KeyboardArrowUpIcon />
-                            ) : (
-                              <KeyboardArrowDownIcon />
-                            )}
-                          </IconButton>
-                        </div>
+                        <IconButton
+                          color="inherit"
+                          onClick={e =>
+                            handleChevronClick(e, item, isActive(item.id))
+                          }
+                          size="large">
+                          {isActive(item.id) ? (
+                            <KeyboardArrowUpIcon />
+                          ) : (
+                            <KeyboardArrowDownIcon />
+                          )}
+                        </IconButton>
+                      </div>
 
-                        {collapseItem === item.id
-                          ? renderSitemap(item, i18n.language, currentMenu)
-                          : null}
-                      </Hidden>
-                      <Hidden xsDown>
-                        {renderSitemap(item, i18n.language, currentMenu)}
-                      </Hidden>
-                    </li>
-                  </ul>
-                )
-              })}
-        </div>
-      </nav>
-    </>
-  )
+                      {collapseItem === item.id
+                        ? renderSitemap(item, i18n.language, currentMenu)
+                        : null}
+                    </Hidden>
+                    <Hidden smDown>
+                      {renderSitemap(item, i18n.language, currentMenu)}
+                    </Hidden>
+                  </li>
+                </ul>
+              );
+            })}
+      </div>
+    </nav>
+  </>;
 }
 
 export default Sitemap

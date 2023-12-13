@@ -4,14 +4,14 @@ import DataGridTable from '@components/TableList/DataGridTable'
 import { GRID_ROWS_PER_PAGE_OPTION } from '@constants'
 import useSearchTypes from '@hooks/useSearchTypes'
 import { convertStringToDateFormat, format as dateFormat } from '@libs/date'
-import { Box } from '@material-ui/core'
+import { Box } from '@mui/material'
 import {
   GridCellParams,
   GridValueFormatterParams,
   GridValueGetterParams,
   MuiEvent,
 } from '@material-ui/data-grid'
-import FiberNewIcon from '@material-ui/icons/FiberNew'
+import FiberNewIcon from '@mui/icons-material/FiberNew'
 import { Page } from '@service'
 import { conditionAtom } from '@stores'
 import { rownum } from '@utils'

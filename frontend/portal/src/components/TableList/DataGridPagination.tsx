@@ -1,7 +1,7 @@
 import React from 'react'
-import Pagination, { PaginationProps } from '@material-ui/lab/Pagination'
+import Pagination, { PaginationProps } from '@mui/material'
 import { useGridSlotComponentProps } from '@material-ui/data-grid'
-import PaginationItem from '@material-ui/lab/PaginationItem'
+import PaginationItem from '@mui/lab'
 
 interface DataGridPaginationProps extends PaginationProps {}
 

@@ -1,6 +1,8 @@
-import IconButton from '@material-ui/core/IconButton'
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
-import ClearIcon from '@material-ui/icons/Clear'
+import IconButton from '@mui/material/IconButton'
+import { Theme } from '@mui/material/styles';
+import createStyles from '@mui/styles/createStyles';
+import makeStyles from '@mui/styles/makeStyles';
+import ClearIcon from '@mui/icons-material/Clear'
 import { fileService, IAttachmentResponse } from '@service'
 import { formatBytes } from '@utils'
 import produce from 'immer'
@@ -34,36 +36,34 @@ const AttachList = (props: AttachListProps) => {
       }),
     )
   }
-  return (
-    <>
-      {data &&
-        data.map(file => {
-          return file.isDelete ? null : (
-            <div key={`file-div-${file.id}`} id="attach-div">
-              <a
-                id="attach-list"
-                key={`file-${file.id}`}
-                href={`${fileService.downloadUrl}/${file.id}`}
-                download={file.originalFileName}
-              >
-                {`${file.originalFileName} (${formatBytes(file.size)})`}
-              </a>
-              {!readonly && (
-                <IconButton
-                  className={classes.icon}
-                  key={`file-clear-${file.id}`}
-                  onClick={(e: React.MouseEvent) => {
-                    handleDelete(file)
-                  }}
-                >
-                  <ClearIcon fontSize="inherit" />
-                </IconButton>
-              )}
-            </div>
-          )
-        })}
-    </>
-  )
+  return <>
+    {data &&
+      data.map(file => {
+        return file.isDelete ? null : (
+          <div key={`file-div-${file.id}`} id="attach-div">
+            <a
+              id="attach-list"
+              key={`file-${file.id}`}
+              href={`${fileService.downloadUrl}/${file.id}`}
+              download={file.originalFileName}
+            >
+              {`${file.originalFileName} (${formatBytes(file.size)})`}
+            </a>
+            {!readonly && (
+              <IconButton
+                className={classes.icon}
+                key={`file-clear-${file.id}`}
+                onClick={(e: React.MouseEvent) => {
+                  handleDelete(file)
+                }}
+                size="large">
+                <ClearIcon fontSize="inherit" />
+              </IconButton>
+            )}
+          </div>
+        );
+      })}
+  </>;
 }
 
 export default AttachList

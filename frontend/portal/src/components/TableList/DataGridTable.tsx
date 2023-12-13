@@ -4,11 +4,11 @@ import {
   DataGridProps,
   GridColDef,
 } from '@material-ui/data-grid'
-import withWidth, {
-  WithWidthProps,
-} from '@material-ui/core/withWidth'
 import { DEFUALT_GRID_PAGE_SIZE } from '@constants'
 import DataGridPagination from './DataGridPagination'
+
+// FIXME checkout https://mui.com/components/use-media-query/#migrating-from-withwidth
+const withWidth = () => (WrappedComponent) => (props) => <WrappedComponent {...props} width="xs" />;
 
 interface DataGridTableProps extends WithWidthProps, DataGridProps {
   xsColumns: GridColDef[]
