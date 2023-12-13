@@ -30,7 +30,11 @@ public enum Role {
     ANONYMOUS("ROLE_ANONYMOUS", "손님"),
     USER("ROLE_USER", "일반 사용자"),
     EMPLOYEE("ROLE_EMPLOYEE", "내부 사용자"),
-    ADMIN("ROLE_ADMIN", "시스템 관리자");
+    ADMIN("ROLE_ADMIN", "시스템 관리자"),
+    OFFICE_MANAGER("ROLE_OFFICE_MANAGER", "교육청 관리자"),
+    TEACHER("ROLE_TEACHER", "선생님"),
+    STUDENT("ROLE_STUDENT", "학생");
+
 
     private final String key;
     private final String title;

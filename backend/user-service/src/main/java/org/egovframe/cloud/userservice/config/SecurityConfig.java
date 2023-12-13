@@ -30,7 +30,7 @@ import static org.egovframe.cloud.common.config.GlobalConstant.SECURITY_PERMITAL
  * </pre>
  */
 @RequiredArgsConstructor
-@EnableWebSecurity // Spring Security 설정들을 활성화시켜 준다
+//@EnableWebSecurity // Spring Security 설정들을 활성화시켜 준다
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final TokenProvider tokenProvider;
@@ -79,9 +79,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      * @throws Exception
      */
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    protected void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
         // userService.loadUserByUsername 메소드
-        auth.userDetailsService(userService).passwordEncoder(bCryptPasswordEncoder);
+    	authenticationManagerBuilder.userDetailsService(userService).passwordEncoder(bCryptPasswordEncoder);
     }
 
 }
