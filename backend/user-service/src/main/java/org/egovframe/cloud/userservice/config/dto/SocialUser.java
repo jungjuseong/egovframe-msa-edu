@@ -269,7 +269,7 @@ public class SocialUser implements UserDetails, CredentialsContainer {
          * is equivalent to
          *
          * <code>
-         *     builder.authorities("ROLE_USER","ROLE_ADMIN");
+         *     builder.authorities("ROLE_TEACHER","ROLE_ADMIN");
          * </code>
          *
          * <p>
@@ -318,7 +318,7 @@ public class SocialUser implements UserDetails, CredentialsContainer {
 
         /**
          * Populates the authorities. This attribute is required.
-         * @param authorities the authorities for this user (i.e. ROLE_USER, ROLE_ADMIN,
+         * @param authorities the authorities for this user (i.e. ROLE_TEACHER, ROLE_ADMIN,
          * etc). Cannot be null, or contain null values
          * @return the {@link SocialUser.UserBuilder} for method chaining (i.e. to populate
          * additional attributes for this user)

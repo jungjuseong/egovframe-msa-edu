@@ -100,7 +100,7 @@ public class MenuRoleService extends AbstractService {
     }
 
     /**
-     * 계층구조 메뉴 조회 로그인 사용자의 권한으로 조회하고 로그인 사용자가 없는 경우 손님(ROLE_ANONYMOUS) 로 조회한다.
+     * 계층구조 메뉴 조회 로그인 사용자의 권한으로 조회하고 로그인 사용자가 없는 경우 손님(ROLE_GUEST) 로 조회한다.
      *
      * @param siteId
      * @return
@@ -109,7 +109,7 @@ public class MenuRoleService extends AbstractService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication == null || !authentication.isAuthenticated()
             || authentication instanceof AnonymousAuthenticationToken) {
-            return menuRoleRepository.findMenu(Role.ANONYMOUS.getKey(), siteId);
+            return menuRoleRepository.findMenu(Role.GUEST.getKey(), siteId);
         }
         String role = authentication.getAuthorities().stream()
             .map(GrantedAuthority::toString)

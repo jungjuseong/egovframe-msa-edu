@@ -34,7 +34,7 @@ public class SecurityConfig2 {
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     	
 		AuthenticationManagerBuilder builder = http.getSharedObject(AuthenticationManagerBuilder.class);
-        builder.userDetailsService(userService).passwordEncoder(bCryptPasswordEncoder);
+        builder.userDetailsService(tokenProvider.userService).passwordEncoder(bCryptPasswordEncoder);
         
         if (authenticationManager == null) {
         	authenticationManager = builder.build();
@@ -60,6 +60,8 @@ public class SecurityConfig2 {
                 
         return http.build();
     }
+    
+
 }
 
 

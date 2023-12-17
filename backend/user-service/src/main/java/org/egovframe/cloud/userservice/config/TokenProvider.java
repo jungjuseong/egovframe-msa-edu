@@ -36,7 +36,7 @@ import java.util.stream.Collectors;
 @Component
 public class TokenProvider {
 
-    private final UserService userService;
+    public final UserService userService;
 
     public TokenProvider(UserService userService) {
         this.userService = userService;

@@ -83,7 +83,7 @@ public class UserJoinRequestDto {
                 .email(email)
                 .encryptedPassword(passwordEncoder.encode(password)) // 패스워드 인코딩
                 .userId(UUID.randomUUID().toString()) // 사용자 아이디 랜덤하게 생성
-                .role(Role.USER) // 가입 시 기본 권한
+                .role(Role.TEACHER) // 가입 시 기본 권한
                 .userStateCode(UserStateCode.NORMAL.getKey()) // 승인 절차 없이 정상 상태로 가입
                 .build();
     }

@@ -210,7 +210,7 @@ class MenuRoleApiControllerTest {
                 .isUse(true)
                 .build());
         MenuRole parentMenuRole = MenuRole.builder()
-                .roleId(Role.ANONYMOUS.getKey())
+                .roleId(Role.GUEST.getKey())
                 .menu(parentMenu)
                 .build();
         parentMenuRole.setMenu(parentMenu);
@@ -227,7 +227,7 @@ class MenuRoleApiControllerTest {
             childMenu.setParentMenu(parentMenu);
             menuRepository.save(childMenu);
             MenuRole role_any = MenuRole.builder()
-                    .roleId(Role.ANONYMOUS.getKey())
+                    .roleId(Role.GUEST.getKey())
                     .menu(childMenu)
                     .build();
             role_any.setMenu(childMenu);

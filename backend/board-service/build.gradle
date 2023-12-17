@@ -24,7 +24,6 @@ repositories {
 
 ext {
     set('springCloudVersion', "2021.0.3")
-    set('querydslVersion', "2021.0.3")
     set('log4j2.version', "2.17.2") // log4j 보안 패치
 }
 
@@ -61,10 +60,10 @@ dependencies {
     implementation 'org.springframework.cloud:spring-cloud-stream-binder-rabbit'
 
     // querydsl
-    implementation 'com.querydsl:querydsl-jpa:${querydslVersion}'
-    annotationProcessor 'com.querydsl:querydsl-apt:${querydslVersion}'
-    implementation 'com.querydsl:querydsl-sql:${querydslVersion}'
-    implementation 'com.querydsl:querydsl-sql-spring:${querydslVersion}'
+    implementation 'com.querydsl:querydsl-jpa:5.0.0'
+    annotationProcessor 'com.querydsl:querydsl-apt:5.0.0'
+    implementation 'com.querydsl:querydsl-sql:5.0.0'
+    implementation 'com.querydsl:querydsl-sql-spring:5.0.0'
     
     // openapi docs
     implementation 'org.springdoc:springdoc-openapi-webmvc-core:1.6.9'

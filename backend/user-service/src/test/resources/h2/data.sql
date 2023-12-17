@@ -30,63 +30,65 @@ INSERT INTO `authorization` (authorization_name,url_pattern_value,http_method_co
      ('사용자 소셜 정보 조회','/user-service/api/v1/users/social','POST',129,'65a00f65-8460-49af-98ec-042977e56f4b',now(),'65a00f65-8460-49af-98ec-042977e56f4b',now());
 
 INSERT INTO `role` (role_id,role_name,role_content,sort_seq,created_date) VALUES
-     ('ROLE_ADMIN','시스템 관리자','시스템 관리자 권한',101,'2021-10-20 13:39:15'),
-     ('ROLE_ANONYMOUS','손님','손님 권한',104,'2021-10-20 13:39:15'),
-     ('ROLE_EMPLOYEE','내부 사용자','내부 사용자 권한',102,'2021-10-20 13:39:15'),
-     ('ROLE_USER','일반 사용자','일반 사용자 권한',103,'2021-10-20 13:39:15');
+     ('ROLE_ADMIN','시스템 관리자','시스템 관리자 권한',101,'2023-12-15 13:39:15'),
+     ('ROLE_OFFICER','서울시교육청 관리자','서울시교육청 관리자 권한',102,'2023-12-15 13:39:15'),
+     ('ROLE_TEACHER','선생님','선생님 권한',103,'2023-12-15 13:39:15');
+     ('ROLE_STUDENT','학생','학생 권한',104,'2023-12-15 13:39:15');
+     ('ROLE_GUEST','손님','손님 권한',105,'2023-12-15 13:39:15'),
+
 
 INSERT INTO role_authorization (role_id,authorization_no,created_by,created_date)
 select 'ROLE_ADMIN', authorization_no, '65a00f65-8460-49af-98ec-042977e56f4b', now() from `authorization`
 
 union all
-select 'ROLE_USER', authorization_no, '65a00f65-8460-49af-98ec-042977e56f4b', now() from `authorization`
+select 'ROLE_TEACHER', authorization_no, '65a00f65-8460-49af-98ec-042977e56f4b', now() from `authorization`
 where url_pattern_value = '/user-service/api/v1/users/?*' and http_method_code = 'GET'
 union all
-select 'ROLE_USER', authorization_no, '65a00f65-8460-49af-98ec-042977e56f4b', now() from `authorization`
+select 'ROLE_TEACHER', authorization_no, '65a00f65-8460-49af-98ec-042977e56f4b', now() from `authorization`
 where url_pattern_value = '/user-service/api/v1/users/token/refresh' and http_method_code = 'GET'
 union all
-select 'ROLE_USER', authorization_no, '65a00f65-8460-49af-98ec-042977e56f4b', now() from `authorization`
+select 'ROLE_TEACHER', authorization_no, '65a00f65-8460-49af-98ec-042977e56f4b', now() from `authorization`
 where url_pattern_value = '/user-service/api/v1/authorizations/check' and http_method_code = 'GET'
 union all
-select 'ROLE_USER', authorization_no, '65a00f65-8460-49af-98ec-042977e56f4b', now() from `authorization`
+select 'ROLE_TEACHER', authorization_no, '65a00f65-8460-49af-98ec-042977e56f4b', now() from `authorization`
 where url_pattern_value = '/user-service/api/v1/users/exists' and http_method_code = 'POST'
 union all
-select 'ROLE_USER', authorization_no, '65a00f65-8460-49af-98ec-042977e56f4b', now() from `authorization`
+select 'ROLE_TEACHER', authorization_no, '65a00f65-8460-49af-98ec-042977e56f4b', now() from `authorization`
 where url_pattern_value = '/user-service/api/v1/users/password/update' and http_method_code = 'PUT'
 union all
-select 'ROLE_USER', authorization_no, '65a00f65-8460-49af-98ec-042977e56f4b', now() from `authorization`
+select 'ROLE_TEACHER', authorization_no, '65a00f65-8460-49af-98ec-042977e56f4b', now() from `authorization`
 where url_pattern_value = '/user-service/api/v1/users/password/match' and http_method_code = 'POST'
 union all
-select 'ROLE_USER', authorization_no, '65a00f65-8460-49af-98ec-042977e56f4b', now() from `authorization`
+select 'ROLE_TEACHER', authorization_no, '65a00f65-8460-49af-98ec-042977e56f4b', now() from `authorization`
 where url_pattern_value = '/user-service/api/v1/users/info/?*' and http_method_code = 'PUT'
 union all
-select 'ROLE_USER', authorization_no, '65a00f65-8460-49af-98ec-042977e56f4b', now() from `authorization`
+select 'ROLE_TEACHER', authorization_no, '65a00f65-8460-49af-98ec-042977e56f4b', now() from `authorization`
 where url_pattern_value = '/user-service/api/v1/users/leave' and http_method_code = 'POST'
 
 union all
-select 'ROLE_ANONYMOUS', authorization_no, '65a00f65-8460-49af-98ec-042977e56f4b', now() from `authorization`
+select 'ROLE_GUEST', authorization_no, '65a00f65-8460-49af-98ec-042977e56f4b', now() from `authorization`
 where url_pattern_value = '/user-service/api/v1/users/?*' and http_method_code = 'GET'
 union all
-select 'ROLE_ANONYMOUS', authorization_no, '65a00f65-8460-49af-98ec-042977e56f4b', now() from `authorization`
+select 'ROLE_GUEST', authorization_no, '65a00f65-8460-49af-98ec-042977e56f4b', now() from `authorization`
 where url_pattern_value = '/user-service/api/v1/users/token/refresh' and http_method_code = 'GET'
 union all
-select 'ROLE_ANONYMOUS', authorization_no, '65a00f65-8460-49af-98ec-042977e56f4b', now() from `authorization`
+select 'ROLE_GUEST', authorization_no, '65a00f65-8460-49af-98ec-042977e56f4b', now() from `authorization`
 where url_pattern_value = '/user-service/api/v1/authorizations/check' and http_method_code = 'GET'
 union all
-select 'ROLE_ANONYMOUS', authorization_no, '65a00f65-8460-49af-98ec-042977e56f4b', now() from `authorization`
+select 'ROLE_GUEST', authorization_no, '65a00f65-8460-49af-98ec-042977e56f4b', now() from `authorization`
 where url_pattern_value = '/user-service/api/v1/users/exists' and http_method_code = 'POST'
 union all
-select 'ROLE_ANONYMOUS', authorization_no, '65a00f65-8460-49af-98ec-042977e56f4b', now() from `authorization`
+select 'ROLE_GUEST', authorization_no, '65a00f65-8460-49af-98ec-042977e56f4b', now() from `authorization`
 where url_pattern_value = '/user-service/api/v1/users/join' and http_method_code = 'POST'
 union all
-select 'ROLE_ANONYMOUS', authorization_no, '65a00f65-8460-49af-98ec-042977e56f4b', now() from `authorization`
+select 'ROLE_GUEST', authorization_no, '65a00f65-8460-49af-98ec-042977e56f4b', now() from `authorization`
 where url_pattern_value = '/user-service/api/v1/users/password/find' and http_method_code = 'POST'
 union all
-select 'ROLE_ANONYMOUS', authorization_no, '65a00f65-8460-49af-98ec-042977e56f4b', now() from `authorization`
+select 'ROLE_GUEST', authorization_no, '65a00f65-8460-49af-98ec-042977e56f4b', now() from `authorization`
 where url_pattern_value = '/user-service/api/v1/users/password/valid/?*' and http_method_code = 'GET'
 union all
-select 'ROLE_ANONYMOUS', authorization_no, '65a00f65-8460-49af-98ec-042977e56f4b', now() from `authorization`
+select 'ROLE_GUEST', authorization_no, '65a00f65-8460-49af-98ec-042977e56f4b', now() from `authorization`
 where url_pattern_value = '/user-service/api/v1/users/password/change' and http_method_code = 'PUT'
 union all
-select 'ROLE_ANONYMOUS', authorization_no, '65a00f65-8460-49af-98ec-042977e56f4b', now() from `authorization`
+select 'ROLE_GUEST', authorization_no, '65a00f65-8460-49af-98ec-042977e56f4b', now() from `authorization`
 where url_pattern_value = '/user-service/api/v1/users/social' and http_method_code = 'POST';

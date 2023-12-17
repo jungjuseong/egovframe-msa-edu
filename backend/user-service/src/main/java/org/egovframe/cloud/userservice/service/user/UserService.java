@@ -842,7 +842,7 @@ public class UserService extends AbstractService implements UserDetailsService {
                     //.encryptedPassword(passwordEncoder.encode(password)) // 100 byte
                     .userName(userName)
                     .userId(userId)
-                    .role(Role.USER)
+                    .role(Role.GUEST)
                     .userStateCode(UserStateCode.NORMAL.getKey())
                     .build();
             user.setSocial(providerCode, providerId);

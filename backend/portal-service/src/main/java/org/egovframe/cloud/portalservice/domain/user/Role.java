@@ -25,10 +25,12 @@ import lombok.RequiredArgsConstructor;
 public enum Role {
 
     // 스프링 시큐리티에서는 권한 코드에 항상 ROLE_ 이 앞에 있어야 한다.
-    ANONYMOUS("ROLE_ANONYMOUS", "손님"),
-    USER("ROLE_USER", "일반 사용자"),
-    EMPLOYEE("ROLE_EMPLOYEE", "내부 사용자"),
-    ADMIN("ROLE_ADMIN", "시스템 관리자");
+	
+    GUEST("ROLE_GUEST", "손님"),
+    TEACHER("ROLE_TEACHER", "선생"),
+    OFFICER("ROLE_OFFICER", "서울시교육청 관리자"),
+    ADMIN("ROLE_ADMIN", "시스템 관리자"),
+    STUDENT("ROLE_STUDENT", "학생");
 
     private final String key;
     private final String title;

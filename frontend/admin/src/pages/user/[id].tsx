@@ -98,7 +98,7 @@ const UserItem = ({
       password: '',
       passwordConfirm: '',
       userName: initData?.userName || '',
-      roleId: initData?.roleId || 'ROLE_ANONYMOUS',
+      roleId: initData?.roleId || 'ROLE_GUEST',
       userStateCode: initData?.userStateCode || '00',
     },
   })
@@ -312,7 +312,7 @@ const UserItem = ({
                 <Controller
                   name="roleId"
                   control={control}
-                  defaultValue={initData?.roleId || 'ROLE_ANONYMOUS'}
+                  defaultValue={initData?.roleId || 'ROLE_GUEST'}
                   rules={{ required: true }}
                   render={({ field }) => (
                     <Select

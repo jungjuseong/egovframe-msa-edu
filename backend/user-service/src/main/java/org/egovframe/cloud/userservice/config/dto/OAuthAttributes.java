@@ -44,7 +44,8 @@ public class OAuthAttributes {
     }
 
     private static OAuthAttributes ofNaver(String userNameAttributeName, Map<String, Object> attributes) {
-        Map<String, Object> response = (Map<String, Object>) attributes.get("response");
+        @SuppressWarnings("unchecked")
+		Map<String, Object> response = (Map<String, Object>) attributes.get("response");
         return OAuthAttributes.builder()
                 .userName((String) response.get("name"))
                 .email((String) response.get("email"))
@@ -60,7 +61,7 @@ public class OAuthAttributes {
         return User.builder()
                 .userName(userName)
                 .email(email)
-                .role(Role.ANONYMOUS)
+                .role(Role.TEACHER)
                 .build();
     }
 }
